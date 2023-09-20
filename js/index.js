@@ -3,20 +3,16 @@ import { getPerson, getFilm } from "./api/starwars.js";
 //////// MAIN METHOD
 (async () => {
 	/////
-	try {
-		const person = await getPerson("poop");
-		const firstFilmEndpoint = person.films[0];
-		const firstFilmId = firstFilmEndpoint.split("/")[5];
-		const firstFilm = await getFilm(firstFilmId);
-		console.log(`${person.name}'s first film is ${firstFilm.title}`);
-		const endpointArr = firstFilm.characters;
-		for (let endpoint of endpointArr) {
-			const id = endpoint.split("/")[5];
-			const character = await getPerson(id);
-			console.log(character.name);
-		}
-	} catch (error) {
-		console.log("oops poopy");
+	const person = await getPerson("poop");
+	const firstFilmEndpoint = person.films[0];
+	const firstFilmId = firstFilmEndpoint.split("/")[5];
+	const firstFilm = await getFilm(firstFilmId);
+	console.log(`${person.name}'s first film is ${firstFilm.title}`);
+	const endpointArr = firstFilm.characters;
+	for (let endpoint of endpointArr) {
+		const id = endpoint.split("/")[5];
+		const character = await getPerson(id);
+		console.log(character.name);
 	}
 
 	/* DOT THEN HELL
